@@ -4,7 +4,9 @@ from rich.text import Text
 from tabulate import tabulate
 from rich.table import Table
 from rich import box
-import msvcrt
+import sys
+import termios  # Unix-based alternative
+import tty
 from typing import List
 from prompt_toolkit import Application
 from prompt_toolkit.layout import Layout, Window, HSplit
