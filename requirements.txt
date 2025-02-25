@@ -14,4 +14,3 @@ web3==7.8.0
 tabulate==0.9.0
 rich
 prompt_toolkit
-msvcrt
