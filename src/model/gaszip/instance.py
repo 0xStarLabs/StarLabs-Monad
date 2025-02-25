@@ -49,7 +49,7 @@ class Gaszip:
             logger.error(f"[{self.account_index}] Failed to get balance for {network}: {str(e)}")
             return 0
 
-    async def wait_for_balance_increase(self, initial_balance: float, timeout: int = 180) -> bool:
+    async def wait_for_balance_increase(self, initial_balance: float, timeout: int = 99999) -> bool:
         """Wait for MON balance to increase after refuel."""
         start_time = asyncio.get_event_loop().time()
         while asyncio.get_event_loop().time() - start_time < timeout:

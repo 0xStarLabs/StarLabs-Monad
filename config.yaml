@@ -63,7 +63,6 @@ FLOW:
     # "owlto" - deploy contract on Owlto
 
     # REFUEL
-    # "gaszip" - gaszip refuel from arbitrum, optimism, base to monad
     # "orbiter" - bridge ETH from Sepolia to Monad via Orbiter
 
     # OTHER
@@ -79,7 +78,6 @@ FLOW:
     # 3. collect_all_to_monad
     TASKS:
         [
-            "gaszip",
             ["bean", "swaps"],
             "collect_all_to_monad",
             "accountable"

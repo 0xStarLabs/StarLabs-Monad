@@ -87,17 +87,46 @@ class Accountable:
                     self.config.SETTINGS.PAUSE_BETWEEN_ATTEMPTS[1]
                 ))
     
+    async def get_nft_balances(self) -> list:
+        """Check balances of all NFT IDs (1-7) for the wallet."""
+        try:
+            balances = []
+            for token_id in range(1, 8):  # Check IDs 1 through 7
+                balance = await self.nft_contract.functions.balanceOf(
+                    self.account.address,
+                    token_id
+                ).call()
+                if balance > 0:
+                    balances.append(token_id)
+                    logger.info(f"[{self.account_index}] Already owns NFT #{token_id}")
+            
+            return balances
+        except Exception as e:
+            logger.error(f"[{self.account_index}] Error checking NFT balances: {str(e)}")
+            return []
+
     async def mint(self):
         """Execute NFT minting with signature."""
         for retry in range(self.config.SETTINGS.ATTEMPTS):
             try:
-                # Pick random token ID between 1 and 7
-                token_id = random.randint(1, 7)
-                logger.info(f"[{self.account_index}] Selected token ID {token_id} for minting")
+                # Get currently owned NFTs
+                owned_nfts = await self.get_nft_balances()
+                
+                # Get available NFTs to mint (ones we don't own)
+                available_nfts = [i for i in range(1, 8) if i not in owned_nfts]
+                
+                if not available_nfts:
+                    logger.success(f"[{self.account_index}] Already own all available NFTs")
+                    return True
+
+                # Pick random NFT from available ones
+                token_id = random.choice(available_nfts)
+                logger.info(f"[{self.account_index}] Selected token ID {token_id} for minting from available IDs: {available_nfts}")
+                
                 signature = await self.get_mint_signature(token_id)
                 if not signature:
                     logger.success(f"[{self.account_index}] Skipping mint - NFT limit reached (CHECK LIMIT IN CONFIG)")
-                    return True  # Return success since this is expected behavior
+                    return True
 
                 logger.info(f"[{self.account_index}] Minting NFT #{token_id} with signature")
 
@@ -106,7 +135,7 @@ class Accountable:
 
                 # Estimate gas for the mint transaction
                 gas_estimate = await self.nft_contract.functions.mint(
-                    token_id,  # Using selected token ID
+                    token_id,
                     signature_bytes
                 ).estimate_gas({
                     'from': self.account.address
@@ -117,14 +146,14 @@ class Accountable:
 
                 # Prepare mint transaction
                 mint_txn = await self.nft_contract.functions.mint(
-                    token_id,  # Using selected token ID
+                    token_id,
                     signature_bytes
                 ).build_transaction({
                     'from': self.account.address,
                     'nonce': await self.web3.eth.get_transaction_count(self.account.address),
-                    'gas': int(gas_estimate * 1.1),  # Add 10% buffer
-                    'chainId': 10143,  # Monad chain ID
-                    'type': 2,  # EIP-1559 transaction
+                    'gas': int(gas_estimate * 1.1),
+                    'chainId': 10143,
+                    'type': 2,
                     **gas_params
                 })
 
@@ -136,7 +165,7 @@ class Accountable:
                 receipt = await self.web3.eth.wait_for_transaction_receipt(tx_hash)
 
                 if receipt['status'] == 1:
-                    logger.success(f"[{self.account_index}] Successfully minted NFT. TX: {EXPLORER_URL}{tx_hash.hex()}")
+                    logger.success(f"[{self.account_index}] Successfully minted NFT #{token_id}. TX: {EXPLORER_URL}{tx_hash.hex()}")
                     return True
                 else:
                     logger.error(f"[{self.account_index}] Mint transaction failed! TX: {EXPLORER_URL}{tx_hash.hex()}")
