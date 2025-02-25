@@ -4,9 +4,6 @@ from rich.text import Text
 from tabulate import tabulate
 from rich.table import Table
 from rich import box
-import sys
-import termios  # Unix-based alternative
-import tty
 from typing import List
 from prompt_toolkit import Application
 from prompt_toolkit.layout import Layout, Window, HSplit
@@ -14,7 +11,6 @@ from prompt_toolkit.layout.controls import FormattedTextControl
 from prompt_toolkit.key_binding import KeyBindings
 from prompt_toolkit.formatted_text import HTML
 from prompt_toolkit.styles import Style
-
 
 def show_logo():
     """Отображает стильный логотип STARLABS"""
