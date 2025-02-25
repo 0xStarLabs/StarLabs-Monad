@@ -12,7 +12,6 @@ from prompt_toolkit.key_binding import KeyBindings
 from prompt_toolkit.formatted_text import HTML
 from prompt_toolkit.styles import Style
 
-
 def show_logo():
     """Отображает стильный логотип STARLABS"""
     # Очищаем экран

@@ -48,7 +48,7 @@ Deploys smart contracts on Owlto platform.
 
 1. Clone the repository
 ```bash
-git clone https://github.com/0xStarLabs/StarLabs-Monad.git
+git clone https://github.com/chichiops/StarLabs-Monad.git
 cd StarLabs-Monad
 ```
 
@@ -95,7 +95,7 @@ PERCENT_OF_BALANCE_TO_SWAP: [10, 15]
 
 5. Run the bot
 ```bash
-python main.py
+python3 main.py
 ```
 
 ## Support
