@@ -95,7 +95,7 @@ PERCENT_OF_BALANCE_TO_SWAP: [10, 15]
 
 5. Run the bot
 ```bash
-python main.py
+python3 main.py
 ```
 
 ## Support
