@@ -113,7 +113,7 @@ class MonadSwap:
         return url
     
     async def get_swap_quote(self, percentage_to_swap_or_amount: float, token_out: str, token_in: str = None) -> Dict:
-        max_retries = 30
+        max_retries = 5
         json_data = {'account': self.account.address, 'type': 'transaction'}
         client = await create_client(self.proxy)
 

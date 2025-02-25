@@ -14,6 +14,7 @@ from src.model.owlto.instance import Owlto
 from src.model.magma.instance import Magma
 from src.model.apriori import Apriori
 from src.model.monad_xyz.instance import MonadXYZ
+from src.model.nad_domains.instance import NadDomains
 from src.utils.client import create_client
 from src.utils.config import Config
 from src.model.help.stats import WalletStats
@@ -119,15 +120,15 @@ class Start:
                     await monad.swaps(type="collect_all_to_monad")
                     await self.sleep("collect_all_to_monad")
 
-                # elif task == "gaszip":
-                #     gaszip = Gaszip(
-                #         self.account_index,
-                #         self.proxy,
-                #         self.private_key,
-                #         self.config,
-                #     )
-                #     await gaszip.refuel()
-                #     await self.sleep("gaszip")
+                elif task == "gaszip":
+                    gaszip = Gaszip(
+                        self.account_index,
+                        self.proxy,
+                        self.private_key,
+                        self.config,
+                    )
+                    await gaszip.refuel()
+                    await self.sleep("gaszip")
 
                 elif task == "apriori":
                     apriori = Apriori(
@@ -227,6 +228,17 @@ class Start:
                         self.private_key, self.account_index
                     )
                     await self.sleep("logs")
+
+                elif task == "nad_domains":
+                    nad_domains = NadDomains(
+                        self.account_index,
+                        self.proxy,
+                        self.private_key,
+                        self.config,
+                        self.session,
+                    )
+                    await nad_domains.register_random_domain()
+                    await self.sleep("nad_domains")
 
             return True
         except Exception as e:
