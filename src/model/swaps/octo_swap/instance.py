@@ -4,7 +4,7 @@ import random
 import asyncio
 from decimal import Decimal
 from typing import Dict, List, Optional, Union, Tuple
-from web3 import Web3
+from web3 import AsyncWeb3, Web3
 from web3.contract import Contract
 from web3.types import TxParams, Wei, ChecksumAddress
 from eth_account import Account
@@ -13,7 +13,7 @@ from primp import AsyncClient
 
 from src.utils.config import Config
 from src.utils.constants import EXPLORER_URL, RPC_URL
-from src.utils.rpc_utils import create_web3_client
+
 from .constants import (
     ROUTER_CONTRACT,
     WMON_CONTRACT,
@@ -56,10 +56,11 @@ class OctoSwap:
         self.account: Account = Account.from_key(private_key=private_key)
 
         # Создаем настроенный Web3 клиент с middleware для повторных попыток
-        self.web3 = create_web3_client(
-            rpc_url=RPC_URL,
-            account_index=account_index,
-            proxy=proxy,
+        self.web3 = AsyncWeb3(
+            AsyncWeb3.AsyncHTTPProvider(
+                RPC_URL,
+                request_kwargs={"proxy": (f"http://{proxy}"), "ssl": False},
+            )
         )
 
     async def get_gas_params(self) -> Dict[str, int]:
