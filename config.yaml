@@ -146,7 +146,7 @@ MAGICEDEN:
     ]
 
 FAUCET:
-    USE_SOLVIUM_FOR_CLOUDFLARE: true
+    USE_SOLVIUM_FOR_CLOUDFLARE: false
     # CHEAPEST CAPTCHA SOLVER - https://t.me/solvium_crypto_bot
     SOLVIUM_API_KEY: sadfhasldfhalsdjfhalsdjf
 
@@ -155,10 +155,10 @@ FAUCET:
     CAPSOLVER_API_KEY: CAP-
 
     # Using Nocaptcha by default
-    NOCAPTCHA_API_KEY: ""
+    NOCAPTCHA_API_KEY: "b6bc71af-eac1-4151-8113-9e4dbadd2914"
     # if does not work without proxy, set proxy here
     # format: username:password@ip:port
-    PROXY_FOR_NOCAPTCHA: "x"
+    PROXY_FOR_NOCAPTCHA: "7894d588badfbcd8635a__cr.us:28411a6f90465bfb@gw.dataimpulse.com:10000"
     
 # --------------------------- #
 # EXCHANGES SECTION
