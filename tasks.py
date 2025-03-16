@@ -1,5 +1,5 @@
 TASKS = [
-    "FAUCET",
+    "SWAPS_TASK",
 ]
 
 # MAGICEDEN WORKS ONLY WITH THESE NFT https://magiceden.io/mint-terminal/monad-testnet
