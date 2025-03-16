@@ -1,5 +1,5 @@
 TASKS = [
-    "BRIDGE_AND_SWAPS",
+    "FULL_TASK",
 ]
 
 # MAGICEDEN WORKS ONLY WITH THESE NFT https://magiceden.io/mint-terminal/monad-testnet
