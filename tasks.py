@@ -1,5 +1,5 @@
 TASKS = [
-    "BRIDGE_SEPOLIA_AND_CONVERT_TO_MON",
+    "FAUCET",
 ]
 
 # MAGICEDEN WORKS ONLY WITH THESE NFT https://magiceden.io/mint-terminal/monad-testnet
