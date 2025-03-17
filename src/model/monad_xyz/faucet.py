@@ -72,7 +72,9 @@ async def faucet(
             # }
 
             if config.FAUCET.USE_SOLVIUM_FOR_CLOUDFLARE:
-                logger.info(f"[{account_index}] | Solving Cloudflare challenge with Solvium...")
+                logger.info(
+                    f"[{account_index}] | Solving Cloudflare challenge with Solvium..."
+                )
                 solvium = Solvium(
                     api_key=config.FAUCET.SOLVIUM_API_KEY,
                     session=session,
@@ -84,7 +86,6 @@ async def faucet(
                     pageurl="https://testnet.monad.xyz/",
                 )
                 cf_result = result
-
 
             elif config.FAUCET.USE_CAPSOLVER_FOR_CLOUDFLARE:
                 logger.info(
@@ -99,7 +100,6 @@ async def faucet(
                     "0x4AAAAAAA-3X4Nd7hf3mNGx",
                     "https://testnet.monad.xyz/",
                 )
-
 
             else:
                 # Solve Cloudflare challenge - matching working example configuration
@@ -181,18 +181,22 @@ async def faucet(
                 )
 
                 claim_result = await curl_session.post(
-                    "https://testnet.monad.xyz/api/faucet/claim", headers=headers, json=json_data
+                    "https://faucet-claim.monadinfra.com/",
+                    headers=headers,
+                    json=json_data,
                 )
                 response_text = claim_result.text
                 status_code = claim_result.status_code
-                
+
             else:
                 logger.info(f"[{account_index}] | Initializing TLS client...")
                 tls_client = TLSClient()
                 # response_text = claim_result.text
-                
+
                 # Выполняем запрос через TLS клиент
-                logger.info(f"[{account_index}] | Sending claim request via TLS client...")
+                logger.info(
+                    f"[{account_index}] | Sending claim request via TLS client..."
+                )
 
                 # Преобразуем прокси в формат http://user:pass@ip:port
                 proxy_parts = proxy.split("@")
@@ -202,7 +206,7 @@ async def faucet(
                     proxy_url = f"http://{proxy}"
 
                 response = tls_client.make_request(
-                    url="https://testnet.monad.xyz/api/faucet/claim",
+                    url="https://faucet-claim.monadinfra.com/",
                     method="POST",
                     headers=headers,
                     data=json_data,
@@ -223,7 +227,7 @@ async def faucet(
             if "Faucet is currently closed" in response_text:
                 logger.error(f"[{account_index}] | Faucet is currently closed")
                 return False
-            
+
             if "used Cloudflare to restrict access" in response_text:
                 logger.error(f"[{account_index}] | Cloudflare solved wrong...")
                 continue
