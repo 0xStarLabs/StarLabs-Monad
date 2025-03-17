@@ -158,7 +158,7 @@ FAUCET:
     NOCAPTCHA_API_KEY: "b6bc71af-eac1-4151-8113-9e4dbadd2914"
     # if does not work without proxy, set proxy here
     # format: username:password@ip:port
-    PROXY_FOR_NOCAPTCHA: "7894d588badfbcd8635a__cr.us:28411a6f90465bfb@gw.dataimpulse.com:10000"
+    PROXY_FOR_NOCAPTCHA: "7894d588badfbcd8635a__cr.id,us:28411a6f90465bfb@gw.dataimpulse.com:10000"
     
 # --------------------------- #
 # EXCHANGES SECTION
