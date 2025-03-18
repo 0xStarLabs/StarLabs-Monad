@@ -65,6 +65,24 @@ BRIDGE_AND_SWAPS = [
     "collect_all_to_monad",
 ]
 
+YOGI_TASK = [
+    ["nfts", "nad_domains", "monadverse_mint", "monad_xyz", "monad_curvance"],
+    ["izumi", "swaps", "ambient", "bean", "skip", "skip", "skip"],
+    ["izumi", "swaps", "ambient", "bean", "skip", "skip", "skip"],
+    ["izumi", "aircraft", "lilchogstars", "bean", "swaps", "skip"],
+    ["ambient", "izumi", "bean", "skip", "skip"],
+    "collect_all_to_monad",
+    ["apriori", "magma", "shmonad", "kintsu", "skip", "skip"],
+    ["apriori", "magma", "shmonad", "kintsu", "skip"],
+    ["ambient", "izumi", "bean", "magiceden", "monadking", "skip"],
+    ["magiceden", "monadking", "aircraft", "skip", "skip"],
+    "collect_all_to_monad",
+    ["ambient", "izumi", "bean", "magiceden", "monadking", "skip"],
+    ["izumi", "swaps", "ambient", "bean", "skip", "skip", "skip"],
+    ["owlto", "skip", "skip"],
+    ["izumi", "swaps", "ambient", "bean", "skip", "skip"],
+    "logs",
+]
 
 FULL_TASK = [
     ["izumi", "swaps", "ambient", "bean", "skip"],
