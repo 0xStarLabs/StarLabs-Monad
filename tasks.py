@@ -1,5 +1,5 @@
 TASKS = [
-    "FAUCET",
+    "KIRIM",
 ]
 
 # MAGICEDEN WORKS ONLY WITH THESE NFT https://magiceden.io/mint-terminal/monad-testnet
@@ -11,6 +11,14 @@ FAUCET = [
 DUSTED = [
     "dusted",
 ]
+
+]
+
+kIRIM = [
+    "disperse_one_one",
+]
+
+
 """
 EN:
 You can create your own task with the modules you need 
