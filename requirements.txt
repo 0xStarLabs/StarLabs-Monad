@@ -3,7 +3,7 @@ aiogram==3.18.0
 aiohappyeyeballs==2.4.6
 aiohttp==3.9.5
 aiosignal==1.3.2
-annotated-types==0.7.0
+annotated-types==0.6.0
 attrs==25.1.0
 bitarray==3.1.0
 certifi==2025.1.31
@@ -61,7 +61,6 @@ win32_setctime==1.2.0
 yarl==1.18.3
 ccxt
 pynocaptcha
-curl_cffi
 tqdm
 pandas
 openpyxl
